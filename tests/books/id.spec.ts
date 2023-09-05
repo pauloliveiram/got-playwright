@@ -1,10 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('Validar o método GET do endpoint /books/{id}', async ({ request }) => {
+test("Validar o método GET do endpoint /books/{id}", async ({ request }) => {
   const response = await request.get("/api/books/1");
   const responseBody = await response.json();
   expect(response.ok()).toBeTruthy();
-  expect(responseBody.url).toContain("https://www.anapioficeandfire.com/api/books/");
+  expect(responseBody.url).toContain(
+    "https://www.anapioficeandfire.com/api/books/",
+  );
   expect(typeof responseBody.name).toBe("string");
   expect(typeof responseBody.isbn).toBe("string");
   expect(Array.isArray(responseBody.authors)).toBe(true);
@@ -15,7 +17,11 @@ test('Validar o método GET do endpoint /books/{id}', async ({ request }) => {
   expect(typeof responseBody.mediaType).toBe("string");
   expect(typeof responseBody.released).toBe("string");
   expect(Array.isArray(responseBody.characters)).toBe(true);
-  expect(responseBody.characters[0]).toContain("https://www.anapioficeandfire.com/api/characters/");
+  expect(responseBody.characters[0]).toContain(
+    "https://www.anapioficeandfire.com/api/characters/",
+  );
   expect(Array.isArray(responseBody.povCharacters)).toBe(true);
-  expect(responseBody.povCharacters[0]).toContain("https://www.anapioficeandfire.com/api/characters/");
+  expect(responseBody.povCharacters[0]).toContain(
+    "https://www.anapioficeandfire.com/api/characters/",
+  );
 });
